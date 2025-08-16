@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.dfas{
+    background-color: rgb(226, 231, 235);
+}
