@@ -76,6 +76,7 @@ toast.success("Ürün başarıyla silindi.", {
     <table className="min-w-full border text-sm text-left text-gray-700 bg-white shadow">
       <thead className="bg-gray-100">
         <tr>
+          <th className="px-4 py-2 border"></th>
           <th className="px-4 py-2 border">Ürün Adı</th>
           <th className="px-4 py-2 border">Ürün Kategorisi</th>
           <th className="px-4 py-2 border">Ürün Fiyatı</th>
@@ -90,6 +91,7 @@ toast.success("Ürün başarıyla silindi.", {
       <tbody>
         {filteredItems.map(product =>(
 <tr key={product.productId} className="hover:bg-gray-50">
+  <td className="px-4 py-2 border"><img src={product.productImage} alt="" width={50} height={50} /></td>
           <td className="px-4 py-2 border">{product.name}</td>
           <td className="px-4 py-2 border text-pink-500 font-semibold">{product.category.name}</td>
           <td className="px-4 py-2 border">{product.price} TL</td>

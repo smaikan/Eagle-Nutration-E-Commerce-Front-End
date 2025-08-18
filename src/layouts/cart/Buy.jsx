@@ -3,14 +3,42 @@ import { useCart, useCurrentauth } from '../../redux/Hooks'
 import Modal from '../modal'
 import UserInfo from '../userinfo'
 import OrderSuccess from './OrderSuccess'
+import { useDispatch } from 'react-redux'
+import { EmptyCart } from '../../redux/Cart'
 
 const Buy = () => {
   const Cartlist = useCart()
   const user = useCurrentauth()
   const [order, setOrder] = useState({})
 const [isModalOpen, setIsModalOpen] = useState(false);
-  
+const dispatch = useDispatch();
+
+
 console.log(user)
+
+  const emptyCart = async () => {
+  try {
+    const response = await fetch(`http://localhost:5042/api/Cart/empty?userId=${user.id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error("Sepeti boşaltma başarısız!");
+    }
+
+    const result = await response.text();
+    console.log("Sepet boşaltıldı:", result);
+
+   
+     dispatch(EmptyCart())
+  } catch (err) {
+    console.error("Hata:", err.message);
+  }
+};
+
   const Buy = async ()=>{
 if(Cartlist.length !== 0)
     {try{
@@ -38,6 +66,7 @@ if(Cartlist.length !== 0)
       }
         const Order = await response.json()
         setOrder(Order)
+        emptyCart();
       console.log("sipariş oluşturuldu: " , order)
       setIsModalOpen(true)
     }

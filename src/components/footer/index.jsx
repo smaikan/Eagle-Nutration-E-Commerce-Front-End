@@ -71,11 +71,11 @@ const Footer = () => {
           </div>
         </div>
         <div className="font-bold text-2xl text-gray-200 underline">
-            htfitnutration@gmail.com <br /> <br />08507248324
+            eaglenutration@gmail.com <br /> <br />08507248324
         </div>
 
       </div >
-     <div className="self-center mt-16 text-gray-200">© 2024 Eagle Nutrition</div>
+     <div className="self-center mt-16 text-gray-200">© 2025 Eagle Nutrition</div>
     </div>
   );
 };
