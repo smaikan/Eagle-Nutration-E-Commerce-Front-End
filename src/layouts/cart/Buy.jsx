@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useCart, useCurrentauth } from '../../redux/Hooks'
 import Modal from '../modal'
-import UserInfo from '../userinfo'
+import UserInfo from '../usersettings/userinfo'
 import OrderSuccess from './OrderSuccess'
 import { useDispatch } from 'react-redux'
 import { EmptyCart } from '../../redux/Cart'
@@ -14,7 +14,7 @@ const [isModalOpen, setIsModalOpen] = useState(false);
 const dispatch = useDispatch();
 
 
-console.log(user)
+console.log(Cartlist)
 
   const emptyCart = async () => {
   try {
@@ -54,6 +54,8 @@ if(Cartlist.length !== 0)
         orderDetails:
           Cartlist.map(item => ({
       productId: item.productId,
+      productName:item.productName,
+      productImage:item.productImage,
       quantity: item.quantity,
       aroma: item.aroma || "Aromasız",
       unitPrice: item.unitPrice

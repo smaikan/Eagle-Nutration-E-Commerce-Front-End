@@ -27,7 +27,9 @@ import { Addauth } from './redux/Auth';
 import { useCurrentauth } from './redux/Hooks';
 import UserList from './layouts/adminPanel/user';
 import { Getcart } from './redux/Cart';
-import UserInfo from './layouts/userinfo';
+import UserInfo from './layouts/usersettings/userinfo';
+import UserSettings from './layouts/usersettings';
+import OrderHistory from './layouts/usersettings/orderhistory';
 
 
 function App() {
@@ -144,7 +146,10 @@ useEffect(() => {
           <Route path="zayiflama" element={<Zayiflama />} />
           <Route path="giyim" element={<Giyim />} />
           <Route path="aksesuar" element={<Aksesuar />} />
-          <Route path="userinfo" element={<UserInfo />} />
+           <Route path="user" element={<UserSettings />}>
+           <Route index element={<UserInfo />} />
+            <Route path="order" element={<OrderHistory/>}/>
+          </Route>
           <Route path="product/:id" element={<Productpage />} />
         </Route>
          

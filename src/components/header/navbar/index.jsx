@@ -51,7 +51,7 @@ export function Navbar() {
 
 
         <div className='ml-14 flex items-center gap-16'  >
-         {account && Object.keys(account).length > 0 && <Link to='/userinfo' className='flex items-center gap-3'>
+         {account && Object.keys(account).length > 0 && <Link to='/user' className='flex items-center gap-3'>
             <div className="relative w-fit">
               <FontAwesomeIcon className="w-7 -mb-[2px] h-7 text-white" icon={faFileLines} />
             </div>

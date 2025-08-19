@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useCurrentauth } from "../../redux/Hooks";
+import { useCurrentauth } from "../../../redux/Hooks";
 import { useDispatch } from "react-redux";
-import { UpdateAuth } from "../../redux/Auth";
+import { UpdateAuth } from "../../../redux/Auth";
 
 const UserInfo = ({isOpen,setIsOpen}) => {
   const dispatch = useDispatch();
