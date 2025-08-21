@@ -8,7 +8,7 @@ return (
 <thead className="bg-gray-600">
 <tr>
 <th className="px-4 py-3 text-left text-xs font-semibold text-white">Ürün</th>
-<th className="px-4 py-3 text-left text-xs font-semibold text-white">Aroma</th>
+<th className="px-4 py-3 text-left text-xs font-semibold text-white">Aroma/Beden</th>
 <th className="px-4 py-3 text-right text-xs font-semibold text-white">Adet</th>
 <th className="px-4 py-3 text-right text-xs font-semibold text-white">Birim</th>
 <th className="px-4 py-3 text-right text-xs font-semibold text-white">Ara Toplam</th>
@@ -26,7 +26,7 @@ return (
 </div>
 </div>
 </td>
-<td className="px-4 py-3 text-sm text-gray-600">{l.aroma || "-"}</td>
+<td className="px-4 py-3 text-sm text-gray-600">{l.aroma != "Aromasız" || "" ? l.aroma : "-"}</td>
 <td className="px-4 py-3 text-right text-sm text-gray-600">{l.quantity}</td>
 <td className="px-4 py-3 text-right text-sm text-gray-600">{l.unitPrice} TL</td>
 <td className="px-4 py-3 text-right text-sm text-gray-600">{l.unitPrice * l.quantity} TL</td>

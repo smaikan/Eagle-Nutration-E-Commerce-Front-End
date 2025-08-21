@@ -69,7 +69,7 @@ toast.success("Ürün başarıyla silindi.", {
     className="ml-28 mt-auto w-15 h-10 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
   />
       <button onClick={()=>setIsModalAdd(true)} className="self-center bg-green-500 w-28 h-10 hover:bg-green-600 text-white  px-2 py-1 rounded font-bold text-sm">Ürün ekle</button>
-      <Modal isOpen={isModalAdd} onClose={() => setIsModalAdd(false)}> <AddProduct setItems={setAllitem} isOpen={setIsModalAdd}/> </Modal>
+      <Modal isOpen={isModalAdd} onClose={() => setIsModalAdd(false)}> <main className="flex-1  h-[80vh] overflow-y-auto"> <AddProduct setItems={setAllitem} isOpen={setIsModalAdd}/> </main></Modal>
       </div>
   
   <div className="overflow-x-auto">
@@ -106,7 +106,7 @@ toast.success("Ürün başarıyla silindi.", {
           <td className="px-4 py-2 border space-x-1">
             <button onClick={()=>handleEdit(product.productId)} className="bg-blue-500 hover:bg-blue-600 text-white text-xs px-2 py-1 rounded">Düzenle</button>
             <Modal  isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <EditProduct Items={Allitem} setItems={setAllitem} isOpen={setIsModalOpen} id={selectedProductId}/>
+       <main className="flex-1  h-[80vh] overflow-y-auto"> <EditProduct Items={Allitem} setItems={setAllitem} isOpen={setIsModalOpen} id={selectedProductId}/> </main>
       </Modal>
             <button onClick={()=>handleDelete(product.productId)} className="bg-red-500 hover:bg-red-600 text-white text-xs px-2 py-1 rounded">Sil</button>
             

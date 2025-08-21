@@ -30,6 +30,9 @@ import { Getcart } from './redux/Cart';
 import UserInfo from './layouts/usersettings/userinfo';
 import UserSettings from './layouts/usersettings';
 import OrderHistory from './layouts/usersettings/orderhistory';
+import OrderMagmanet from './layouts/adminPanel/order';
+import OrderManagemet from './layouts/adminPanel/order';
+import OrderManagement from './layouts/adminPanel/order';
 
 
 function App() {
@@ -135,6 +138,8 @@ useEffect(() => {
        <Route path="/" element={<AdminPanel />}>
           <Route path="product" element={<AdminProduct />} />
            <Route path="user" element={<UserList />} />
+           <Route path="ordermanagement" element={<OrderManagement />} />
+
         </Route>  : 
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Home />} />

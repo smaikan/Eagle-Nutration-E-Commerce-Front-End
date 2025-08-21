@@ -101,7 +101,7 @@ if(Cartlist.length !== 0)
         SATIN AL
         </div>
 <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-  {/* Dış kap: yüksekliği sınırlı, iç scroll */}
+
   
     <div className="flex items-center justify-between px-4 py-3 border-b sticky top-0 bg-white z-10">
       <h3 className="text-lg font-semibold">{!user?.address || !user?.phone ? "Eksik Veriler" : "Sipariş Tamamlandı"}</h3>

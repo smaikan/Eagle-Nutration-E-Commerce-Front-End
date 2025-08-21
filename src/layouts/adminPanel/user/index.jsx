@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { useAuths } from '../../../redux/Hooks'
 import { toast, ToastContainer } from 'react-toastify'
+import Modal from '../../modal'
+import OrderHistory from '../../usersettings/orderhistory'
 
 const UserList = () => {
   const accountsarray = useAuths()
  const accounts = accountsarray[0] || []
-
+const [isOpen, setIsOpen] = useState(false)
  const [allUser, setAllUser] = useState([]);
  
  useEffect(() => {
@@ -56,8 +58,9 @@ toast.success("Ürün başarıyla silindi.", {
             <tr>
               <th className="px-4 py-2 border">Kullanıcı ID</th>
               <th className="px-4 py-2 border">Kullanıcı adı</th>
+              <th className="px-4 py-2 border">E-Posta</th>
+              <th className="px-4 py-2 border">Parola</th>
               <th className="px-4 py-2 border">Rol</th>
-              <th className="px-4 py-2 border">Siparişler</th>
               <th className="px-4 py-2 border">Siparişler</th>
               <th className="px-4 py-2 border">İşlem</th>
             </tr>
@@ -73,6 +76,10 @@ toast.success("Ürün başarıyla silindi.", {
               <td className="px-4 py-2 border text-pink-500 font-semibold">{account.userPassword}</td> 
               <td className="px-4 py-2 border">
                 <span className="px-2 py-1 bg-green-200 text-green-800 text-xs font-semibold rounded">{account.role}</span>
+              </td>
+              <td className="px-4 py-2 border">
+                <span onClick={() => setIsOpen(true)} className="cursor-pointer select-none px-5 py-2 bg-blue-600 text-white text-xs font-semibold rounded">Siparişler</span>
+               <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}> <main className="flex-1  h-[80vh] overflow-y-auto"><OrderHistory id={account.id} /> </main> </Modal>
               </td>
               <td className="px-4 py-2 border space-x-1">
                             
