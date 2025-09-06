@@ -9,14 +9,59 @@ const UserList = () => {
  const accounts = accountsarray[0] || []
 const [isOpen, setIsOpen] = useState(false)
  const [allUser, setAllUser] = useState([]);
+ const [form , setForm] = useState("")
+ const [selectedUserId, setSelectedUserId] = useState(null);
+
+ const ChangeRole = async (user)=>{
+  const role = user.role == "User" ? "Admin" : "User";
+
+   const confirmChange = window.confirm(`${user.userName} rolü ${role} olarak değiştirilsin mi?`);
+
+  if (!confirmChange) return;
+
+  try {
+    var result = await fetch(`http://localhost:5042/api/Users/role?id=${user.id}&role=${role}`,{
+      method:"PUT"
+    })
+    var res = await result.json()
+    if(res == false){console.log("false döndü.")}
+
+    console.log(user)
+setAllUser(prev =>
+  prev.map(o =>
+    o.id === user.id
+      ? { ...o, role: role }
+      : o
+  )
+);
+  } catch (error) {
+    console.log(error)
+  }
+ }
  
+ const change = (e)=>{
+setForm(e)
+ }
+
  useEffect(() => {
    setAllUser(accounts);
+
  }, [accounts]);
+
+
+
+ const FilteredUser = allUser.filter((user) =>
+  user.email?.toLowerCase().includes(form.toLowerCase())
+);
+
  
  console.log("liste:", accounts)
 
 const handleDelete = async (uid) => {
+  const confirmChange = window.confirm(`${uid} numaralı kullanıcı silinecek. Onaylıyor musunuz? `);
+
+  if (!confirmChange) return;
+  
   try {
     const res = await fetch(`http://localhost:5042/api/users/${uid}`, {
       method: 'DELETE',
@@ -45,12 +90,12 @@ toast.success("Ürün başarıyla silindi.", {
 
 
   <input
+  onChange={(e)=>change(e.target.value)}
     type="text"
     placeholder="Ara..."
     className="ml-28 mt-auto w-15 h-10 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
   />
      
-      <button  className="self-center bg-green-500 w-28 h-10 hover:bg-green-600 text-white  px-2 py-1 rounded font-bold text-sm">Kullanıcı ekle</button>
       </div>
     <div className="overflow-x-auto">
         <table className="min-w-full border text-sm text-left text-gray-700 bg-white shadow">
@@ -68,18 +113,26 @@ toast.success("Ürün başarıyla silindi.", {
           <tbody>
             
     
-      { allUser.map( account =>(
+      { FilteredUser.map( account =>(
         <tr  key={account.id}  className="hover:bg-gray-50">
 <td className="px-4 py-2 border">{account.id}</td>
               <td className="px-4 py-2 border text-pink-500 font-semibold">{account.userName}</td> 
               <td className="px-4 py-2 border text-pink-500 font-semibold">{account.email}</td> 
               <td className="px-4 py-2 border text-pink-500 font-semibold">{account.userPassword}</td> 
               <td className="px-4 py-2 border">
-                <span className="px-2 py-1 bg-green-200 text-green-800 text-xs font-semibold rounded">{account.role}</span>
+<span
+  onClick={() => ChangeRole(account)}
+  className={`px-2 py-1 cursor-pointer select-none text-xs font-semibold rounded 
+    ${account.role === "Admin" 
+      ? "bg-red-200 text-red-800" 
+      : "bg-green-200 text-green-800"}`}
+>
+  {account.role}
+</span>
               </td>
               <td className="px-4 py-2 border">
-                <span onClick={() => setIsOpen(true)} className="cursor-pointer select-none px-5 py-2 bg-blue-600 text-white text-xs font-semibold rounded">Siparişler</span>
-               <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}> <main className="flex-1  h-[80vh] overflow-y-auto"><OrderHistory id={account.id} /> </main> </Modal>
+                <span onClick={() =>{ setIsOpen(true); setSelectedUserId(account.id);}} className="cursor-pointer select-none px-5 py-2 bg-blue-600 text-white text-xs font-semibold rounded">Siparişler</span>
+               <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}> <main className="flex-1  h-[80vh] overflow-y-auto"><OrderHistory id={selectedUserId} /> </main> </Modal>
               </td>
               <td className="px-4 py-2 border space-x-1">
                             

@@ -32,6 +32,9 @@ const filteredItems = Allitem.filter((product) =>
   };
 
   const handleDelete = async (id) => {
+    const confirmChange = window.confirm(`${id} numaralı ürün silinecek. Onaylıyor musunuz? `);
+
+  if (!confirmChange) return;
   try {
     const res = await fetch(`http://localhost:5042/api/product/${id}`, {
       method: 'DELETE',

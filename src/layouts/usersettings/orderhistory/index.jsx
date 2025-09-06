@@ -9,6 +9,8 @@ const OrderHistory = ({id = null}) => {
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState("");
 
+
+
   useEffect(() => {
  if (!userId) {
       setOrders([]);
@@ -23,15 +25,20 @@ const OrderHistory = ({id = null}) => {
     const fetchOrders = async () => {
 
       try {
+        setLoading(true);
+      setOrders([]);
         const response = await fetch(
           `http://localhost:5042/api/Order/user/${userId}`
         );
         if (!response.ok) throw new Error("Siparişler alınamadı.");
         const data = await response.json();
         setOrders(data);
-        setLoading(false)
+       
       } catch (error) {
         setErr(error.message || "Bir hata oluştu");
+      }
+      finally{
+         setLoading(false)
       }
     };
 

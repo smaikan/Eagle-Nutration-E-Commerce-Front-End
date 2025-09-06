@@ -12,9 +12,17 @@ return (
 <div className="p-4 sm:p-6">
 <div className="flex items-start justify-between">
 <div>
-<span className="inline-flex items-center rounded-full bg-blue-400 px-2.5 py-0.5 text-xs font-medium text-white">
-{order?.orderStatus || "Durum Yok"}
+<span
+  className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium text-white
+    ${order?.orderStatus === "Sipariş Verildi."
+      ? "bg-yellow-500"
+      : order?.orderStatus === "Sipariş Tamamlandı."
+      ? "bg-green-500"
+      : "bg-gray-400"}`}
+>
+  {order?.orderStatus || "Durum Yok"}
 </span>
+
 <h3 className="mt-2 text-lg font-semibold text-gray-600">Tutar: {order.totalPrice} TL</h3>
 <p className="text-sm text-zinc-400">{new Date(order?.orderDate).toLocaleString("tr-TR")}</p>
 </div>

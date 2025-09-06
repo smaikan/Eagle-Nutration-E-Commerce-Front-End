@@ -81,7 +81,6 @@ const totalPrice = product.price * existingQuantity;
     });
   }
 };
-console.log(product)
   return (
     <div>
         <div className='flex gap-72 pl-36 py-20'>
@@ -94,7 +93,7 @@ console.log(product)
                 <div className='mt-3 text-gray-500 text-lg '>{product.description}</div>
                 
                 <div className='mt-7 text-3xl font-bold text-red-600'>{product.price} TL</div>
-                <div onClick={()=>{addCart()}} className='text-gray-200 font-bold text-lg cursor-pointer flex items-center justify-center mt-7 w-72 h-12 bg-blue-800'>Sepete Ekle</div>
+                <div onClick={()=>{addCart()}} className='text-gray-200 select-none font-bold text-lg cursor-pointer flex items-center justify-center mt-7 w-72 h-12 bg-blue-800'>Sepete Ekle</div>
 
             </div> 
         </div>
